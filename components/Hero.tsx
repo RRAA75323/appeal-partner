@@ -121,7 +121,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="absolute top-5 right-32 z-40">
+            <div className="absolute top-5 left-4 lg:left-auto lg:right-32 z-40">
                 <a
                     href="tel:661-605-5819"
                     className="inline-flex flex-col bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-6 py-2 rounded-md font-bold text-sm sm:text-base transition-all duration-300 shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1 transform whitespace-nowrap cursor-pointer"
@@ -193,14 +193,14 @@ export default function Hero() {
                     className={`transition-opacity duration-1500 ease-out ${mounted ? "opacity-100" : "opacity-0"}`}
                 >
                     {/* Mobile & Tablet logo */}
-                    <div className="mb-6 block lg:hidden pt-4">
+                    <div className="mb-6 block lg:hidden pt-10">
                         <div className="flex items-center justify-center space-x-2 sm:space-x-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 mx-auto w-fit">
                             <div className="relative">
-                                <div className="w-7 sm:w-8 h-7 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-md sm:rounded-lg flex items-center justify-center shadow-2xl overflow-hidden">
+                                <div className="w-10 sm:w-8 h-10 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-md sm:rounded-lg flex items-center justify-center shadow-2xl overflow-hidden">
                                     <img
                                         src="https://static.readdy.ai/image/e6422e02a3150375563aeb9e41bc0548/8fd2c099e8bb2b2a0fbbb3c14411f22a.png"
                                         alt="Appeal Partners"
-                                        className="w-4 sm:w-5 h-4 sm:h-5 object-contain"
+                                        className="w-8 sm:w- h-8 sm:h-5 object-contain rounded-sm"
                                     />
                                 </div>
                                 <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></div>

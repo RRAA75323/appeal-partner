@@ -1,0 +1,22 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [
+    "static/chunks/0p7o_next_dist_build_polyfills_polyfill-nomodule.js"
+  ],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [
+    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_04gly5a._.js",
+    "static/chunks/0p7o_next_dist_compiled_next-devtools_index_0mztn.4.js",
+    "static/chunks/0p7o_next_dist_compiled_react-dom_0xacdf.._.js",
+    "static/chunks/0p7o_next_dist_compiled_react-server-dom-turbopack_0zxz096._.js",
+    "static/chunks/0p7o_next_dist_compiled_0kp0bo_._.js",
+    "static/chunks/0p7o_next_dist_client_0-9g.s8._.js",
+    "static/chunks/0p7o_next_dist_0-kgqo5._.js",
+    "static/chunks/0p7o_@swc_helpers_cjs_060u60b._.js",
+    "static/chunks/0gc7_FB International BD_2026_project_Appeal Partners Website Files_0rqeker._.js",
+    "static/chunks/12wi_FB International BD_2026_project_Appeal Partners Website Files_076sthx._.js"
+  ],
+  "pages": {},
+  "ampFirstPages": []
+}
