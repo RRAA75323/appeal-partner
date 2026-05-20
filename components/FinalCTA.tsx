@@ -111,7 +111,7 @@ export default function FinalCTA() {
                 additionalInfo: formData.additionalInfo,
             };
 
-            const response = await fetch("https://appeal-partner-backend.vercel.app/api/zapier", {
+            const response = await fetch("https://hook.us2.make.com/xarevtfjxuslcqb8jxjrm2w3wgkqpy2v", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
