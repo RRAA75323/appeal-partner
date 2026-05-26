@@ -11,7 +11,12 @@ export default function Hero() {
     useEffect(() => {
         setMounted(true);
 
-        const handleScroll = () => setScrollY(window.scrollY);
+        // Safari optimization: skip running parallax calculations on small viewports
+        const handleScroll = () => {
+            if (window.innerWidth > 768) {
+                setScrollY(window.scrollY);
+            }
+        };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -70,15 +75,16 @@ export default function Hero() {
     ];
 
     return (
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        /* FIX 1: Changed h-screen to min-h-screen and added mobile vertical padding (py-24) to ensure the layout never caps out under active Safari toolbars */
+        <section className="relative min-h-screen md:h-screen flex items-center justify-center overflow-hidden py-24 md:py-0 bg-slate-950">
             {/* Premium gradient background with parallax */}
             <div
-                className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900"
-                style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+                className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 transform-gpu"
+                style={{ transform: `translateY(${scrollY * 0.3}px)` }}
             ></div>
 
             {/* Animated mesh overlay */}
-            <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-purple-500/10"></div>
                 <div
                     className={`absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)] transition-all duration-3000 ${mounted ? "animate-pulse" : ""}`}
@@ -86,13 +92,12 @@ export default function Hero() {
             </div>
 
             {/* Premium floating elements */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {mounted && (
                     <>
                         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400/60 rounded-full animate-float-slow"></div>
                         <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-purple-400/40 rounded-full animate-float-delayed"></div>
                         <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-cyan-400/50 rounded-full animate-float">
-                            {/* Premium light streaks */}
                             <div className="absolute top-1/3 right-1/4 w-px h-40 bg-gradient-to-b from-transparent via-blue-400/30 to-transparent rotate-12 animate-fade-in-delayed"></div>
                             <div className="absolute bottom-1/3 left-1/5 w-px h-32 bg-gradient-to-b from-transparent via-purple-400/20 to-transparent -rotate-12 animate-fade-in-slow"></div>
                         </div>
@@ -101,7 +106,7 @@ export default function Hero() {
             </div>
 
             {/* Logo in top left with premium styling - Desktop only */}
-            <div className="absolute top-4 left-4 z-30 hidden lg:block">
+            <div className="absolute top-6 left-6 z-30 hidden lg:block">
                 <div className="flex items-center space-x-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2.5">
                     <div className="relative">
                         <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-2xl overflow-hidden">
@@ -121,12 +126,13 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="absolute top-5 left-4 lg:left-auto lg:right-32 z-40">
+            {/* FIX 2: Relocated top header context on mobile to prevent clipping underneath phone status bar icons */}
+            <div className="absolute top-4 left-4 lg:left-auto lg:right-32 z-40">
                 <a
                     href="tel:661-605-5819"
-                    className="inline-flex flex-col bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-6 py-2 rounded-md font-bold text-sm sm:text-base transition-all duration-300 shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1 transform whitespace-nowrap cursor-pointer"
+                    className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-4 sm:px-6 py-2 rounded-xl font-bold text-xs sm:text-base transition-all duration-300 shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5 transform whitespace-nowrap cursor-pointer h-11"
                 >
-                    <p>+1 661-605-5819</p>
+                    <span>+1 661-605-5819</span>
                 </a>
             </div>
 
@@ -170,7 +176,7 @@ export default function Hero() {
 
                     <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/10">
                         <a
-                            href="tel:+17186684216"
+                            href="tel:+16616055819"
                             className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl font-bold text-center hover:from-blue-500 hover:to-purple-500 transition-all duration-300 cursor-pointer whitespace-nowrap text-sm sm:text-base"
                         >
                             Call Us Now
@@ -187,26 +193,33 @@ export default function Hero() {
                 ></div>
             )}
 
-            {/* Main hero content */}
-            <div className="relative z-20 text-center px-4 sm:px-6 max-w-7xl mx-auto w-full">
+            {/* Main hero content wrapper */}
+            {/* FIX 3: Swapped px-4 to px-6 and added top mobile buffer grid spacing */}
+            <div className="relative z-20 text-center px-5 sm:px-6 max-w-7xl mx-auto w-full pt-12 md:pt-0">
                 <div
-                    className={`transition-opacity duration-1500 ease-out ${mounted ? "opacity-100" : "opacity-0"}`}
+                    className={`transition-opacity duration-1000 ease-out transform-gpu ${mounted ? "opacity-100" : "opacity-0"}`}
                 >
                     {/* Mobile & Tablet logo */}
-                    <div className="mb-6 block lg:hidden pt-10">
-                        <div className="flex items-center justify-center space-x-2 sm:space-x-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg sm:rounded-xl px-3 sm:px-4 py-2 mx-auto w-fit">
-                            <div className="relative">
-                                <div className="w-10 sm:w-8 h-10 sm:h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-md sm:rounded-lg flex items-center justify-center shadow-2xl overflow-hidden">
+                    <div className="mb-8 block lg:hidden w-full">
+                        {/* Scaled up outer padding (py-2.5 px-4) for a more substantial badge look */}
+                        <div className="flex items-center justify-center space-x-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-2.5 mx-auto w-fit shadow-xl">
+                            <div className="relative flex items-center justify-center">
+                                {/* Increased badge size from w-8 h-8 to w-12 h-12 */}
+                                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-2xl overflow-hidden">
+                                    {/* Increased image size from w-5 h-5 to w-8 h-8 for much better visibility */}
                                     <img
                                         src="https://static.readdy.ai/image/e6422e02a3150375563aeb9e41bc0548/8fd2c099e8bb2b2a0fbbb3c14411f22a.png"
                                         alt="Appeal Partners"
-                                        className="w-8 sm:w- h-8 sm:h-5 object-contain rounded-sm"
+                                        className="w-8 h-8 object-contain rounded-sm"
                                     />
                                 </div>
-                                <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></div>
+                                {/* Adjusted absolute dot positioning relative to the larger 12x12 boundary */}
+                                <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping"></div>
+                                <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full"></div>
                             </div>
-                            <div>
-                                <span className="text-sm sm:text-base font-semibold text-white tracking-tight">
+                            <div className="flex items-center">
+                                {/* Bumped text scale slightly (text-base sm:text-lg) to balance out the larger logo asset */}
+                                <span className="text-base sm:text-lg font-bold text-white tracking-tight leading-none">
                                     Appeal Partners
                                 </span>
                             </div>
@@ -215,7 +228,7 @@ export default function Hero() {
 
                     {/* Premium status badge - Desktop only */}
                     <div className="mb-6 sm:mb-8 hidden sm:block">
-                        <div className="inline-flex items-center bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-2xl border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-2xl">
+                        <div className="inline-flex items-center bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-2xl">
                             <div className="flex items-center mr-3 sm:mr-4">
                                 <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2 sm:mr-3 animate-pulse"></div>
                                 <span className="text-emerald-300 font-semibold text-xs uppercase tracking-wider">
@@ -229,9 +242,9 @@ export default function Hero() {
                     </div>
 
                     {/* Mobile-optimized headline */}
-                    <div className="mb-3 sm:mb-4">
+                    <div className="mb-4 py-1">
                         <h1
-                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-purple-200 leading-[0.9] tracking-tighter"
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-purple-200 leading-[1.2] md:leading-[1.15] tracking-tighter"
                             style={{ fontFamily: "Clash Display, sans-serif" }}
                         >
                             The #1 Amazon Seller
@@ -250,7 +263,7 @@ export default function Hero() {
 
                     {/* Premium status badge - Mobile only */}
                     <div className="mb-6 block sm:hidden">
-                        <div className="inline-flex items-center bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-2xl border border-white/20 rounded-full px-3 py-2 shadow-2xl">
+                        <div className="inline-flex items-center bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-md border border-white/20 rounded-full px-3 py-2 shadow-2xl">
                             <div className="flex items-center mr-2">
                                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-2 animate-pulse"></div>
                                 <span className="text-emerald-300 font-semibold text-xs uppercase tracking-wider">
@@ -265,28 +278,29 @@ export default function Hero() {
 
                     {/* Mobile-optimized stats showcase */}
                     <div className="mb-6 sm:mb-8 lg:mb-10">
-                        <div className="grid md:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 max-w-3xl mx-auto">
-                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg sm:rounded-xl lg:rounded-2xl px-3 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer">
-                                <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 whitespace-nowrap">
+                        {/* FIX 4: Ensured grid stacks cleanly as 1 column on mobile to save critical vertical space */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 max-w-3xl mx-auto">
+                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 sm:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer will-change-transform">
+                                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 whitespace-nowrap">
                                     $2.7M+
                                 </div>
-                                <div className="text-blue-300 text-xs sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                                <div className="text-blue-300 text-[10px] sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
                                     Revenue Released
                                 </div>
                             </div>
-                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg sm:rounded-xl lg:rounded-2xl px-3 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer">
-                                <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 whitespace-nowrap">
+                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 sm:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer will-change-transform">
+                                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 whitespace-nowrap">
                                     3,000+
                                 </div>
-                                <div className="text-blue-300 text-xs sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                                <div className="text-blue-300 text-[10px] sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
                                     Accounts Restored
                                 </div>
                             </div>
-                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg sm:rounded-xl lg:rounded-2xl px-3 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer">
-                                <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 whitespace-nowrap">
+                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 sm:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer will-change-transform">
+                                <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 whitespace-nowrap">
                                     4.2 Days
                                 </div>
-                                <div className="text-blue-300 text-xs sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                                <div className="text-blue-300 text-[10px] sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
                                     Avg Resolution
                                 </div>
                             </div>
@@ -294,22 +308,21 @@ export default function Hero() {
                     </div>
 
                     {/* Mobile-optimized CTA buttons */}
-                    <div className="mb-6 sm:mb-8 lg:mb-10">
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center max-w-md sm:max-w-none mx-auto px-2">
+                    <div className="mb-8 sm:mb-8 lg:mb-10">
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 lg:gap-6 justify-center items-center max-w-md sm:max-w-none mx-auto px-2">
                             <button
                                 onClick={scrollToForm}
-                                className="group relative bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 hover:from-blue-500 hover:via-purple-500 hover:to-blue-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl font-bold text-sm sm:text-base lg:text-lg transition-all duration-500 shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-1 transform whitespace-nowrap cursor-pointer border-0 overflow-hidden w-full sm:w-auto"
+                                className="group relative bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white px-6 sm:px-8 lg:px-10 py-4 lg:py-5 rounded-xl lg:rounded-2xl font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-1 transform whitespace-nowrap cursor-pointer border-0 overflow-hidden w-full sm:w-auto"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-700"></div>
                                 <span className="relative z-10 flex items-center justify-center">
                                     Start My Appeal
-                                    <i className="ri-arrow-right-line ml-2 text-lg sm:text-xl lg:text-2xl group-hover:translate-x-2 transition-transform duration-300"></i>
+                                    <i className="ri-arrow-right-line ml-2 text-lg sm:text-xl lg:text-2xl group-hover:translate-x-1 transition-transform duration-300"></i>
                                 </span>
                             </button>
 
                             <Link
                                 href="#process"
-                                className="group text-white/80 hover:text-white font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300 cursor-pointer whitespace-nowrap flex items-center"
+                                className="group text-white/80 hover:text-white font-semibold text-sm sm:text-base lg:text-lg transition-all duration-300 cursor-pointer whitespace-nowrap flex items-center py-2"
                             >
                                 <span className="border-b-2 border-white/30 group-hover:border-blue-400 transition-colors duration-300 pb-1">
                                     See How It Works
@@ -321,16 +334,16 @@ export default function Hero() {
 
                     {/* Mobile-optimized trust indicators */}
                     <div className="mb-4">
-                        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-4 lg:gap-6 opacity-60 max-w-xs sm:max-w-none mx-auto">
-                            <div className="flex items-center justify-center text-white/60 text-xs sm:text-sm font-medium">
+                        <div className="grid grid-cols-1 gap-3 max-w-xs mx-auto sm:flex sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:gap-6 opacity-70">
+                            <div className="flex items-center justify-center text-white/70 text-xs sm:text-sm font-medium">
                                 <i className="ri-shield-check-line mr-1.5 sm:mr-2 text-sm sm:text-base text-emerald-400 w-4 h-4 flex items-center justify-center"></i>
                                 100% Confidential
                             </div>
-                            <div className="flex items-center justify-center text-white/60 text-xs sm:text-sm font-medium">
+                            <div className="flex items-center justify-center text-white/70 text-xs sm:text-sm font-medium">
                                 <i className="ri-time-line mr-1.5 sm:mr-2 text-sm sm:text-base text-blue-400 w-4 h-4 flex items-center justify-center"></i>
                                 24/7 Emergency Line
                             </div>
-                            <div className="flex items-center justify-center text-white/60 text-xs sm:text-sm font-medium">
+                            <div className="flex items-center justify-center text-white/70 text-xs sm:text-sm font-medium">
                                 <i className="ri-award-line mr-1.5 sm:mr-2 text-sm sm:text-base text-purple-400 w-4 h-4 flex items-center justify-center"></i>
                                 Amazon Insider Network
                             </div>
@@ -340,7 +353,7 @@ export default function Hero() {
             </div>
 
             {/* Bottom premium fade */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"></div>
         </section>
     );
 }
