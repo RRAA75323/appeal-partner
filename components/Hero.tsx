@@ -37,7 +37,7 @@ export default function Hero() {
         if (formElement) {
             formElement.scrollIntoView({
                 behavior: "smooth",
-                block: "center",
+                block: "start",
             });
         }
     };

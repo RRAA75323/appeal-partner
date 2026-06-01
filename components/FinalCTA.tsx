@@ -218,7 +218,9 @@ export default function FinalCTA() {
     ];
 
     return (
-        <section className="py-12 sm:py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
+        <section 
+        id="emergency-appeal-form"
+        className="py-12 sm:py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
             <div className="absolute inset-0">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -287,7 +289,7 @@ export default function FinalCTA() {
                                     </div>
 
                                     <form
-                                        id="emergency-appeal-form"
+                                        // id="emergency-appeal-form"
                                         onSubmit={handleSubmit}
                                         className="space-y-3 sm:space-y-4 lg:space-y-6"
                                     >
