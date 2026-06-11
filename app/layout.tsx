@@ -103,6 +103,7 @@ export default function RootLayout({
         <html
             lang="en"
             suppressHydrationWarning={true}
+            className="scroll-smooth"
         >
             <head>
                 <link
