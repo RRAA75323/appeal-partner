@@ -169,35 +169,49 @@ export default function RootLayout({
                         }),
                     }}
                 />
-                <script
-                    src="https://fast.wistia.com/player.js"
-                    async
-                ></script>
             </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}
             >
-                {/* UET tag (Microsoft Ads) */}
-                <Script id="microsoft-uet" strategy="afterInteractive">
-                    {`
-                        (function(w,d,t,u,o){w[u]=w[u]||[],o.ts=(new Date).getTime();var n=d.createElement(t); n.src="https://bat.bing.net/bat.js?ti="+o.ti+("uetq"!=u?"&q="+u:""),n.async=1, n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&"loaded"!==s&&"complete"!==s||( o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad"),n.onload=n.onreadystatechange=null)}; var i=d.getElementsByTagName(t)[0];i.parentNode.insertBefore(n,i); })(window,document,"script","uetq",{ti:"97245010", enableAutoSpaTracking: true});
-                    `}
-                </Script>
+                {/* Wistia Player Script */}
+                <Script
+                    src="https://fast.wistia.com/player.js"
+                    strategy="afterInteractive"
+                />
 
-                {/* Google tag (gtag.js) */}
+                {/* Google Tag (gtag.js) */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=AW-17829495758"
                     strategy="afterInteractive"
                 />
-                <Script id="google-tag" strategy="afterInteractive">
+                <Script id="google-analytics" strategy="afterInteractive">
                     {`
                         window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
+                        function gtag(){window.dataLayer.push(arguments);}
                         gtag('js', new Date());
                         gtag('config', 'AW-17829495758');
+                        window.gtag = gtag;
                     `}
                 </Script>
-
+                <Script id="google-ads-conversion" strategy="afterInteractive">
+                    {`
+                        function gtag_report_conversion(url) {
+                            var callback = function () {
+                                if (typeof(url) != 'undefined') {
+                                    window.location = url;
+                                }
+                            };
+                            if (typeof window.gtag === 'function') {
+                                window.gtag('event', 'conversion', {
+                                    'send_to': 'AW-17829495758/HamtCNy24rMcEM6H4rVC',
+                                    'event_callback': callback
+                                });
+                            }
+                            return false;
+                        }
+                        window.gtag_report_conversion = gtag_report_conversion;
+                    `}
+                </Script>
                 {children}
             </body>
         </html>

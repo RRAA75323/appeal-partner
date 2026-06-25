@@ -464,6 +464,11 @@ export default function FinalCTA() {
                                             <button
                                                 type="submit"
                                                 disabled={isSubmitting}
+                                                onClick={() => {
+                                                    if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                                                        (window as any).gtag_report_conversion();
+                                                    }
+                                                }}
                                                 className="w-full group bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 disabled:from-gray-600 disabled:to-gray-700 text-white px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg lg:text-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl whitespace-nowrap cursor-pointer border-0 relative overflow-hidden shadow-lg"
                                             >
                                                 <span className="relative z-10 flex items-center justify-center">

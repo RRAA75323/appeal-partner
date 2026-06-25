@@ -225,6 +225,11 @@ export default function AppealFormPage() {
           <button
             type="submit"
             disabled={isSubmitting}
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+                (window as any).gtag_report_conversion();
+              }
+            }}
             className="mt-6 sm:mt-8 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:from-blue-600 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.02]"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Appeal Form'}

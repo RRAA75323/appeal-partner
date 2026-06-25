@@ -105,7 +105,7 @@ self.__SERVER_FILES_MANIFEST={
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/home/nahidraz",
+    "outputFileTracingRoot": "/Volumes/fb2/NahidRaz/FB International BD/vhytuuj0/appeal-partner",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -167,7 +167,7 @@ self.__SERVER_FILES_MANIFEST={
       "proxyPrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 11,
+      "cpus": 9,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -305,12 +305,12 @@ self.__SERVER_FILES_MANIFEST={
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/home/nahidraz"
+      "root": "/Volumes/fb2/NahidRaz/FB International BD/vhytuuj0/appeal-partner"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "/home/nahidraz/Documents/Previous-Company/FB International BD/2026/project/Appeal Partners Website Files",
-  "relativeAppDir": "Documents/Previous-Company/FB International BD/2026/project/Appeal Partners Website Files",
+  "appDir": "/Volumes/fb2/NahidRaz/FB International BD/vhytuuj0/appeal-partner",
+  "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",
     ".next/server/pages-manifest.json",
