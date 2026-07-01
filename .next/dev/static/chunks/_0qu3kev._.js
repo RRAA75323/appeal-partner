@@ -4717,6 +4717,11 @@ function FinalCTA() {
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                         type: "submit",
                                                         disabled: isSubmitting,
+                                                        onClick: ()=>{
+                                                            if (("TURBOPACK compile-time value", "object") !== 'undefined' && window.gtag_report_conversion) {
+                                                                window.gtag_report_conversion();
+                                                            }
+                                                        },
                                                         className: "w-full group bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 disabled:from-gray-600 disabled:to-gray-700 text-white px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg lg:text-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl whitespace-nowrap cursor-pointer border-0 relative overflow-hidden shadow-lg",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4727,7 +4732,7 @@ function FinalCTA() {
                                                                             className: "ri-loader-4-line mr-3 animate-spin"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                                            lineNumber: 472,
+                                                                            lineNumber: 477,
                                                                             columnNumber: 61
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4735,7 +4740,7 @@ function FinalCTA() {
                                                                             children: "Processing Emergency Appeal..."
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                                            lineNumber: 473,
+                                                                            lineNumber: 478,
                                                                             columnNumber: 61
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4743,7 +4748,7 @@ function FinalCTA() {
                                                                             children: "Processing..."
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                                            lineNumber: 478,
+                                                                            lineNumber: 483,
                                                                             columnNumber: 61
                                                                         }, this)
                                                                     ]
@@ -4754,7 +4759,7 @@ function FinalCTA() {
                                                                             children: "Start Appeal Process"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                                            lineNumber: 484,
+                                                                            lineNumber: 489,
                                                                             columnNumber: 61
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4762,28 +4767,28 @@ function FinalCTA() {
                                                                             children: "Start Appeal Process"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                                            lineNumber: 488,
+                                                                            lineNumber: 493,
                                                                             columnNumber: 61
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                                             className: "ri-rocket-2-line ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                                            lineNumber: 492,
+                                                                            lineNumber: 497,
                                                                             columnNumber: 61
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/FinalCTA.tsx",
-                                                                lineNumber: 469,
+                                                                lineNumber: 474,
                                                                 columnNumber: 49
                                                             }, this),
                                                             !isSubmitting && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/FinalCTA.tsx",
-                                                                lineNumber: 498,
+                                                                lineNumber: 503,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
@@ -4813,12 +4818,12 @@ function FinalCTA() {
                                                 className: "ri-check-line text-2xl sm:text-3xl lg:text-4xl text-emerald-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/FinalCTA.tsx",
-                                                lineNumber: 507,
+                                                lineNumber: 512,
                                                 columnNumber: 41
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/FinalCTA.tsx",
-                                            lineNumber: 506,
+                                            lineNumber: 511,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -4826,7 +4831,7 @@ function FinalCTA() {
                                             children: "Emergency Appeal Submitted!"
                                         }, void 0, false, {
                                             fileName: "[project]/components/FinalCTA.tsx",
-                                            lineNumber: 509,
+                                            lineNumber: 514,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4834,7 +4839,7 @@ function FinalCTA() {
                                             children: "Your case has been prioritized for immediate review. Our Amazon specialists will contact you within 2 hours to begin your fast-track reinstatement process."
                                         }, void 0, false, {
                                             fileName: "[project]/components/FinalCTA.tsx",
-                                            lineNumber: 512,
+                                            lineNumber: 517,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4845,7 +4850,7 @@ function FinalCTA() {
                                                     children: "What happens next:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/FinalCTA.tsx",
-                                                    lineNumber: 519,
+                                                    lineNumber: 524,
                                                     columnNumber: 41
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4855,46 +4860,46 @@ function FinalCTA() {
                                                             children: "• Immediate case priority assignment"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                            lineNumber: 523,
+                                                            lineNumber: 528,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: "• Expert consultation call within 2 hours"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                            lineNumber: 527,
+                                                            lineNumber: 532,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: "• Custom appeal strategy development"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                            lineNumber: 531,
+                                                            lineNumber: 536,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: "• Direct submission to Amazon"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/FinalCTA.tsx",
-                                                            lineNumber: 535,
+                                                            lineNumber: 540,
                                                             columnNumber: 45
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/FinalCTA.tsx",
-                                                    lineNumber: 522,
+                                                    lineNumber: 527,
                                                     columnNumber: 41
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/FinalCTA.tsx",
-                                            lineNumber: 518,
+                                            lineNumber: 523,
                                             columnNumber: 37
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/FinalCTA.tsx",
-                                    lineNumber: 505,
+                                    lineNumber: 510,
                                     columnNumber: 33
                                 }, this)
                             }, void 0, false, {
@@ -4919,7 +4924,7 @@ function FinalCTA() {
                                             className: `${indicator.icon} text-lg sm:text-xl lg:text-2xl ${indicator.color} mb-1 sm:mb-2 lg:mb-3 block`
                                         }, void 0, false, {
                                             fileName: "[project]/components/FinalCTA.tsx",
-                                            lineNumber: 554,
+                                            lineNumber: 559,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4927,18 +4932,18 @@ function FinalCTA() {
                                             children: indicator.text
                                         }, void 0, false, {
                                             fileName: "[project]/components/FinalCTA.tsx",
-                                            lineNumber: 557,
+                                            lineNumber: 562,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, index, true, {
                                     fileName: "[project]/components/FinalCTA.tsx",
-                                    lineNumber: 547,
+                                    lineNumber: 552,
                                     columnNumber: 29
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/components/FinalCTA.tsx",
-                            lineNumber: 545,
+                            lineNumber: 550,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4953,7 +4958,7 @@ function FinalCTA() {
                                                 className: "ri-alarm-warning-line text-lg sm:text-xl lg:text-2xl text-yellow-400 mr-2 sm:mr-3"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/FinalCTA.tsx",
-                                                lineNumber: 567,
+                                                lineNumber: 572,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4961,13 +4966,13 @@ function FinalCTA() {
                                                 children: "Critical Window Closing"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/FinalCTA.tsx",
-                                                lineNumber: 568,
+                                                lineNumber: 573,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/FinalCTA.tsx",
-                                        lineNumber: 566,
+                                        lineNumber: 571,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4975,18 +4980,18 @@ function FinalCTA() {
                                         children: "Amazon's internal review cycles operate on tight schedules. Missing this window could delay your reinstatement by weeks. Your competitors are already capturing your market share."
                                     }, void 0, false, {
                                         fileName: "[project]/components/FinalCTA.tsx",
-                                        lineNumber: 572,
+                                        lineNumber: 577,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/FinalCTA.tsx",
-                                lineNumber: 565,
+                                lineNumber: 570,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/FinalCTA.tsx",
-                            lineNumber: 564,
+                            lineNumber: 569,
                             columnNumber: 21
                         }, this)
                     ]
