@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function AppealFormPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,21 +44,17 @@ export default function AppealFormPage() {
     };
 
     try {
-      const response = await fetch('https://hooks.zapier.com/hooks/catch/21210663/uk6dbmr/', {
+      const response = await fetch('https://hook.eu1.make.com/dmoq12n9fp6pz4r88gyng3hnwun35fjk', {
         method: 'POST',
         body: JSON.stringify(webhookData),
       });
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          countryCode: '+1',
-          phoneNumber: '',
-          appealType: '',
-          yearsOnAmazon: ''
-        });
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'conversion', { 'send_to': 'AW-17829495758/PdWUCPWb-MUcEM6H4rVC' });
+        }
+        router.push('/thank-you');
       } else {
         setSubmitStatus('error');
       }
@@ -206,14 +204,6 @@ export default function AppealFormPage() {
             </div>
           </div>
 
-          {submitStatus === 'success' && (
-            <div className="mt-5 sm:mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
-              <p className="text-green-400 text-sm font-medium">
-                Thank you! Your form has been submitted successfully. We&apos;ll be in touch soon.
-              </p>
-            </div>
-          )}
-
           {submitStatus === 'error' && (
             <div className="mt-5 sm:mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
               <p className="text-red-400 text-sm font-medium">
@@ -225,11 +215,6 @@ export default function AppealFormPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
-                (window as any).gtag_report_conversion();
-              }
-            }}
             className="mt-6 sm:mt-8 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-base hover:from-blue-600 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl hover:scale-[1.02]"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Appeal Form'}
