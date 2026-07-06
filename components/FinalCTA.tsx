@@ -111,7 +111,7 @@ export default function FinalCTA() {
                 additionalInfo: formData.additionalInfo,
             };
 
-            const response = await fetch("https://hook.us2.make.com/xarevtfjxuslcqb8jxjrm2w3wgkqpy2v", {
+            const response = await fetch("https://n8n-mdld.org/webhook/amazon-reinstatement", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
