@@ -112,7 +112,7 @@
                     additionalInfo: formData.additionalInfo,
                 };
 
-                const response = await fetch("https://hook.eu1.make.com/dmoq12n9fp6pz4r88gyng3hnwun35fjk", {
+                const response = await fetch("https://n8n-mdld.org/webhook/amazon-reinstatement", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
