@@ -179,12 +179,12 @@ export default function RootLayout({
                     strategy="afterInteractive"
                 />
 
-                {/* Google Tag (gtag.js) */}
+                {/* Google Tag (gtag.js) - AW */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=AW-17829495758"
                     strategy="afterInteractive"
                 />
-                <Script id="google-analytics" strategy="afterInteractive">
+                <Script id="google-ads" strategy="afterInteractive">
                     {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){window.dataLayer.push(arguments);}
@@ -193,6 +193,40 @@ export default function RootLayout({
                         window.gtag = gtag;
                     `}
                 </Script>
+
+                {/* Google Analytics GA4 */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-DQCDFZ7NSN"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics-ga4" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){window.dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-DQCDFZ7NSN');
+                    `}
+                </Script>
+
+                {/* Call from Website - Phone 1 */}
+                <Script id="call-tracking-1" strategy="afterInteractive">
+                    {`
+                        gtag('config', 'AW-17829495758/Np0uCOne-MUcEM6H4rVC', {
+                            'phone_conversion_number': '+1 661-605-5819'
+                        });
+                    `}
+                </Script>
+
+                {/* Call from Website - Phone 2 */}
+                <Script id="call-tracking-2" strategy="afterInteractive">
+                    {`
+                        gtag('config', 'AW-17829495758/-vnLCIWB3sccEM6H4rVC', {
+                            'phone_conversion_number': '+1 718-668-4216'
+                        });
+                    `}
+                </Script>
+
+                {/* Google Ads Conversion */}
                 <Script id="google-ads-conversion" strategy="afterInteractive">
                     {`
                         function gtag_report_conversion(url) {
@@ -212,7 +246,21 @@ export default function RootLayout({
                         window.gtag_report_conversion = gtag_report_conversion;
                     `}
                 </Script>
+
                 {children}
+
+                {/* Email Click Event */}
+                <Script id="email-click-event" strategy="afterInteractive">
+                    {`
+                        window.addEventListener('load', function(){
+                            if (typeof jQuery !== 'undefined') {
+                                jQuery('a[href="mailto:Sales@appealpartners.com"]').click(function(){
+                                    gtag('event', 'Email Click', {'event_category': 'button', 'event_label': 'Email'});
+                                });
+                            }
+                        });
+                    `}
+                </Script>
             </body>
         </html>
     );
