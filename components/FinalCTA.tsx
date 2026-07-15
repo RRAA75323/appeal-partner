@@ -342,6 +342,41 @@
                                             />
                                         </div>
 
+                                        {/* Are you ? */}
+                                        <div>
+                                            <label className="block text-white font-medium mb-2 sm:mb-3 text-left text-sm sm:text-base">
+                                                <i className="ri-alarm-warning-line mr-2 text-yellow-400"></i>
+                                                Are you ?
+                                            </label>
+                                            <div className="relative">
+                                                <select
+                                                    name="areYou"
+                                                    value={
+                                                        formData.areYou
+                                                    }
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl px-3 sm:px-4 py-3 sm:py-4 text-white focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all duration-300 text-sm sm:text-base appearance-none pr-8"
+                                                >
+                                                    {areYouOptions.map(
+                                                        (option) => (
+                                                            <option
+                                                                key={
+                                                                    option.value
+                                                                }
+                                                                value={
+                                                                    option.value
+                                                                }
+                                                                className="bg-gray-800 text-white"
+                                                            >
+                                                                {option.label}
+                                                            </option>
+                                                        ),
+                                                    )}
+                                                </select>
+                                                <i className="ri-arrow-down-s-line absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 pointer-events-none"></i>
+                                            </div>
+                                        </div>
+
                                         <div>
                                             <label className="block text-white font-medium mb-2 sm:mb-3 text-left text-sm sm:text-base">
                                                 <i className="ri-alarm-warning-line mr-2 text-yellow-400"></i>
