@@ -9,6 +9,7 @@ type FormData = {
     lastName: string;
     email: string;
     phone: string;
+    areYou: string;
     suspensionReason: string;
     urgencyLevel: UrgencyLevel;
     additionalInfo: string;
@@ -27,13 +28,15 @@ export default function FinalCTA() {
         lastName: "",
         email: "",
         phone: "",
-        suspensionReason: "",
+        areYou: "amazon-seller-account",
+        suspensionReason: "amazon-seller-account-suspended",
         urgencyLevel: "high",
         additionalInfo: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [submitError, setSubmitError] = useState("");
+    const [showBuyerWarning, setShowBuyerWarning] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -68,10 +71,20 @@ export default function FinalCTA() {
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+        if (name === "areYou" && value === "amazon-buyer-account") {
+            setShowBuyerWarning(true);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (formData.areYou === "amazon-buyer-account") {
+            setShowBuyerWarning(true);
+            return;
+        }
+
         setIsSubmitting(true);
         setSubmitError("");
 
@@ -106,6 +119,7 @@ export default function FinalCTA() {
                 lastName: formData.lastName,
                 email: formData.email,
                 phone: formData.phone,
+                areYou: formData.areYou,
                 suspensionReason: formData.suspensionReason,
                 urgencyLevel: urgencyLabels[formData.urgencyLevel],
                 additionalInfo: formData.additionalInfo,
@@ -171,7 +185,7 @@ export default function FinalCTA() {
         },
         {
             icon: "ri-lock-line",
-            text: "Confidential process",
+            text: "3,000+ Accounts reinstated",
             color: "text-purple-500",
         },
     ];
@@ -193,6 +207,24 @@ export default function FinalCTA() {
             color: "text-yellow-400",
         },
     ];
+
+    const areYouOptions = [
+        {
+            value: "amazon-seller-account",
+            label: "Amazon Seller Account",
+            color: "text-red-400",
+        },
+        {
+            value: "amazon-buyer-account",
+            label: "Amazon Buyer Account",
+            color: "text-red-400",
+        },
+         {
+            value: "walmart-seller-account",
+            label: "Walmart Seller Account",
+            color: "text-red-400",
+        },
+    ]
 
     const suspensionOptions = [
         {
@@ -218,9 +250,9 @@ export default function FinalCTA() {
     ];
 
     return (
-        <section 
-        id="emergency-appeal-form"
-        className="py-12 sm:py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
+        <section
+            id="emergency-appeal-form"
+            className="py-12 sm:py-16 lg:py-24 xl:py-32 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
             <div className="absolute inset-0">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -237,7 +269,7 @@ export default function FinalCTA() {
                     </div>
 
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-white mb-4 sm:mb-6 lg:mb-8 tracking-tight leading-[0.9] px-2">
-                        Your Amazon Account
+                        Your Amazon Seller Account
                         <br />
                         <span className="font-medium bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
                             Reinstatement
@@ -278,14 +310,19 @@ export default function FinalCTA() {
                         <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 xl:p-12">
                             {!submitted ? (
                                 <>
-                                    <div className="mb-4 sm:mb-6 lg:mb-8 text-center">
-                                        <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 sm:mb-3 lg:mb-4">
-                                            Amazon Seller Reinstatement Form
-                                        </h3>
-                                        <p className="text-blue-200 font-light text-sm sm:text-base">
+                                    <div className="mb-4 sm:mb-6 lg:mb-8 text-center space-y-4">
+                                        <div>
+                                            <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 sm:mb-3 lg:mb-4">
+                                                Amazon Seller Reinstatement Form
+                                            </h3>
+                                            <p className="text-blue-200 font-bold text-sm sm:text-base">
+                                                We Help Amazon Sellers - Not Buyers
+                                            </p>
+                                        </div>
+                                        {/* <p className="text-blue-200 font-light text-sm sm:text-base">
                                             Complete this form to begin your
                                             fast-track reinstatement
-                                        </p>
+                                        </p> */}
                                     </div>
 
                                     <form
@@ -403,6 +440,41 @@ export default function FinalCTA() {
                                                     </select>
                                                     <i className="ri-arrow-down-s-line absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 pointer-events-none"></i>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Are you ? */}
+                                        <div>
+                                            <label className="block text-white font-medium mb-2 sm:mb-3 text-left text-sm sm:text-base">
+                                                <i className="ri-alarm-warning-line mr-2 text-yellow-400"></i>
+                                                Are you ?
+                                            </label>
+                                            <div className="relative">
+                                                <select
+                                                    name="areYou"
+                                                    value={
+                                                        formData.areYou
+                                                    }
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl px-3 sm:px-4 py-3 sm:py-4 text-white focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition-all duration-300 text-sm sm:text-base appearance-none pr-8"
+                                                >
+                                                    {areYouOptions.map(
+                                                        (option) => (
+                                                            <option
+                                                                key={
+                                                                    option.value
+                                                                }
+                                                                value={
+                                                                    option.value
+                                                                }
+                                                                className="bg-gray-800 text-white"
+                                                            >
+                                                                {option.label}
+                                                            </option>
+                                                        ),
+                                                    )}
+                                                </select>
+                                                <i className="ri-arrow-down-s-line absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 pointer-events-none"></i>
                                             </div>
                                         </div>
 
@@ -584,6 +656,34 @@ export default function FinalCTA() {
                     </div>
                 </div>
             </div>
+
+            {/* Warning Popup Modal for Amazon Buyer Account */}
+            {showBuyerWarning && (
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-slate-950/95 backdrop-blur-2xl border border-white/10 rounded-2xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl relative transform scale-100 transition-all duration-300">
+                        {/* Warning Icon Badge */}
+                        <div className="w-16 h-16 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-yellow-500/20">
+                            <i className="ri-alert-line text-3xl text-yellow-500 animate-pulse"></i>
+                        </div>
+                        
+                        <h4 className="text-xl font-bold text-white mb-3">
+                            Sellers Only Notice
+                        </h4>
+                        
+                        <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Sorry, we do not work with amazon buyer acccount. We only work with amazon seller account. Thank you
+                        </p>
+                        
+                        <button
+                            type="button"
+                            onClick={() => setShowBuyerWarning(false)}
+                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-xl hover:shadow-blue-500/20 hover:scale-[1.02] cursor-pointer"
+                        >
+                            okay i understand
+                        </button>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
