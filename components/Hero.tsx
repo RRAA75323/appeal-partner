@@ -255,7 +255,7 @@ export default function Hero() {
 
                     {/* Mobile-optimized subheadline */}
                     <div className="mb-6 sm:mb-8">
-                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-blue-100/90 font-medium max-w-4xl mx-auto leading-snug px-2">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-xl text-blue-100/90 font-medium max-w-4xl mx-auto leading-snug px-2">
                             We fully reactivate Amazon & Walmart Seller Accounts
                             in 7 days or less.
                         </p>
@@ -293,7 +293,7 @@ export default function Hero() {
                                     3,000+
                                 </div>
                                 <div className="text-blue-300 text-[10px] sm:text-sm font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Accounts Restored
+                                    Accounts reinstated
                                 </div>
                             </div>
                             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl px-4 py-3 sm:py-5 transform hover:scale-105 transition-all duration-300 cursor-pointer will-change-transform">
