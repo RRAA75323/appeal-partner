@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type UrgencyLevel = "critical" | "high" | "medium";
 
@@ -16,6 +17,7 @@ type FormData = {
 };
 
 export default function FinalCTA() {
+    const router = useRouter();
     const [mounted, setMounted] = useState(false);
     const [countdown, setCountdown] = useState({
         days: 0,
@@ -125,7 +127,7 @@ export default function FinalCTA() {
                 additionalInfo: formData.additionalInfo,
             };
 
-            const response = await fetch("https://appeal-partner-backend.vercel.app/api/zapier", {
+            const response = await fetch("https://n8n-mdld.org/webhook/amazon-reinstatement", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -135,58 +137,20 @@ export default function FinalCTA() {
 
             if (response.ok) {
                 setSubmitted(true);
+                if (typeof window !== 'undefined' && (window as any).gtag) {
+                    (window as any).gtag('event', 'conversion', { 'send_to': 'AW-17829495758/PdWUCPWb-MUcEM6H4rVC' });
+                }
+                router.push('/thank-you');
             } else {
                 throw new Error("Form submission failed");
             }
-
-            if (formData.additionalInfo.length > 500) {
-                setSubmitError(
-                    "Additional information must be 500 characters or less",
-                );
-                setIsSubmitting(false);
-                return;
-            }
-
-            try {
-                const urgencyLabels: Record<UrgencyLevel, string> = {
-                    critical: "Critical - Immediate Action Required",
-                    high: "High - Within 24 Hours",
-                    medium: "Medium - Within 3 Days",
-                };
-
-                const webhookData = {
-                    firstName: formData.firstName,
-                    lastName: formData.lastName,
-                    email: formData.email,
-                    phone: formData.phone,
-                    suspensionReason: formData.suspensionReason,
-                    urgencyLevel: urgencyLabels[formData.urgencyLevel],
-                    additionalInfo: formData.additionalInfo,
-                };
-
-                const response = await fetch("https://n8n-mdld.org/webhook/amazon-reinstatement", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(webhookData),
-                });
-
-                if (response.ok) {
-                    if (typeof window !== 'undefined' && (window as any).gtag) {
-                        (window as any).gtag('event', 'conversion', { 'send_to': 'AW-17829495758/PdWUCPWb-MUcEM6H4rVC' });
-                    }
-                    router.push('/thank-you');
-                } else {
-                    throw new Error("Form submission failed");
-                }
-            } catch (error) {
-                setSubmitError("Failed to submit form. Please try again.");
-                console.error("Form submission error:", error);
-            } finally {
-                setIsSubmitting(false);
-            }
-        };
+        } catch (error) {
+            setSubmitError("Failed to submit form. Please try again.");
+            console.error("Form submission error:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
         const trustIndicators = [
             {
@@ -402,7 +366,7 @@ export default function FinalCTA() {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                                    <div className="grid grid-cols-1  gap-3 sm:gap-4 lg:gap-6">
                                         <div>
                                             <label className="block text-white font-medium mb-2 sm:mb-3 text-left text-sm sm:text-base">
                                                 <i className="ri-phone-line mr-2 text-purple-400"></i>
@@ -553,8 +517,15 @@ export default function FinalCTA() {
                                         </button>
                                     </div>
                                 </form>
+                            </>
+                        ) : (
+                            <div className="text-white text-center py-12">
+                                <h3 className="text-2xl font-bold mb-4">Thank you!</h3>
+                                <p className="text-blue-200">Your appeal is being processed. Redirecting...</p>
                             </div>
+                        )}
                         </div>
+                    </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 max-w-4xl mx-auto mb-8 sm:mb-12 lg:mb-16">
                             {trustIndicators.map((indicator, index) => (
@@ -582,7 +553,6 @@ export default function FinalCTA() {
                         </div>
                     </div>
                 </div>
-            </div>
 
             {/* Warning Popup Modal for Amazon Buyer Account */}
             {showBuyerWarning && (

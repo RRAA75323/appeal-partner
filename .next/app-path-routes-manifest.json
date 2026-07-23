@@ -1,0 +1,11 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/appeal-form/page": "/appeal-form",
+  "/blogs/[slug]/page": "/blogs/[slug]",
+  "/blogs/page": "/blogs",
+  "/offer/page": "/offer",
+  "/page": "/",
+  "/terms/page": "/terms",
+  "/thank-you/page": "/thank-you"
+}
