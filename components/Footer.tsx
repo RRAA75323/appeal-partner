@@ -180,7 +180,7 @@ export default function Footer() {
                                             href="tel:+17186684216"
                                             className="hover:text-blue-400 transition-colors cursor-pointer text-sm sm:text-base"
                                         >
-                                            +1 661-605-5819
+                                            +1 718-668-4216
                                         </a>
                                     </div>
                                 </div>
@@ -267,7 +267,7 @@ export default function Footer() {
                                         <i className="ri-phone-line mr-2 text-base sm:text-lg w-5 h-5 flex items-center justify-center"></i>
                                         <p>Emergency Hotline</p>
                                     </div>
-                                    <p className="text-center">+1 661-605-5819</p>
+                                    <p className="text-center">+1 718-668-4216</p>
                                 </a>
                             </div>
                         </div>
